@@ -424,24 +424,24 @@ def plot_2d_clusters(df, kmeans):
 def plot_automl_results():
     """Create AutoML model comparison chart."""
     try:
-        results = joblib.load('automl_results_summary.pkl')
+        results = joblib.load(BASE_DIR / 'models' / 'automl_results_summary.pkl')
         leaderboard = pd.DataFrame(results['leaderboard'])
-        
+
         fig, ax = plt.subplots(figsize=(10, 6))
-        
+
         top_models = leaderboard.nlargest(8, 'Accuracy')
         colors = ['#2ecc71' if i == 0 else '#3498db' for i in range(len(top_models))]
-        
+
         ax.barh(range(len(top_models)), top_models['Accuracy'], color=colors)
         ax.set_yticks(range(len(top_models)))
         ax.set_yticklabels(top_models['Model'], fontsize=10)
         ax.set_xlabel('Accuracy', fontsize=12)
         ax.set_title('AutoML Model Performance', fontsize=16, fontweight='bold')
         ax.grid(True, alpha=0.3, axis='x')
-        
+
         for i, v in enumerate(top_models['Accuracy']):
             ax.text(v + 0.01, i, f'{v:.3f}', va='center', fontsize=10, fontweight='bold')
-        
+
         plt.tight_layout()
         return fig
     except Exception as e:
