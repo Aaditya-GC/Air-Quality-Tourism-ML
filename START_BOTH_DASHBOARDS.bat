@@ -5,11 +5,11 @@ echo ================================================
 echo.
 
 echo [1/2] Starting Air Quality Dashboard...
-start "Air Quality Dashboard" cmd /k "cd 'Project 1 - Air Quality' && streamlit run app.py"
+start "Air Quality Dashboard" cmd /k "cd /d %~dp0Project 1 - Air Quality && streamlit run app.py"
 timeout /t 3 >nul
 
 echo [2/2] Starting Tourism Dashboard...
-start "Tourism Dashboard" cmd /k "cd 'Project 2 - Tourism' && streamlit run tourism_app.py"
+start "Tourism Dashboard" cmd /k "cd /d %~dp0Project 2 - Tourism && streamlit run tourism_app.py"
 timeout /t 3 >nul
 
 echo.
